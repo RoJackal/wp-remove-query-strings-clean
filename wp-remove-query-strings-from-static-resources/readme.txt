@@ -1,65 +1,129 @@
 === WP Remove Query Strings From Static Resources ===
 Contributors: rinkuyadav999
-Tags: remove, query, strings, static, resources
-Requires at least: 4.0
-Tested up to: 6.6
-Stable tag: 1.8
+Donate link: https://paypal.me/RinkuYadav
+Tags: query strings, remove query strings, static resources, page speed, performance
+Stable tag: 2.0
+Requires at least: 5.0
+Tested up to: 7.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-It will remove query strings from static resources like CSS and JS files.
+Boost your WordPress site speed by removing query strings from CSS and JS files — improve your GTmetrix, PageSpeed, and Pingdom scores instantly.
 
 == Description ==
 
-As it's name, it will remove query string from static resources. Static resources are JavaScript, CSS files. It improves speed of WordPress website. And also it improves speed score in website testing tools like Pingdom, GTmetrix, PageSpeed and YSlow.
+**WP Remove Query Strings From Static Resources** is a lightweight, zero-configuration WordPress plugin that automatically removes query strings (like `?ver=6.6`) from your CSS and JavaScript file URLs.
 
-<a href="https://en.wikipedia.org/wiki/Query_string" target="_blank">About Query Strings</a>
+By default, WordPress appends version parameters to static resource URLs — for example:
 
-= Benefits of removing query strings =
+`https://example.com/style.css?ver=6.6`
 
-It is a part of search engine optimization. So it will improve ranking of your website in search engines. And also it will improve speed score in website testing tools. it improves performance of your website and bring more website visitors.
+While this helps with cache-busting during development, it prevents proxy servers and CDN networks from properly caching these files, which hurts your website's performance score.
+
+This plugin strips those query strings, turning URLs like:
+
+`https://example.com/style.css?ver=6.6`
+
+into clean, cacheable URLs like:
+
+`https://example.com/style.css`
+
+= Why Does This Matter? =
+
+Speed is a critical ranking factor for search engines. Tools like **Google PageSpeed Insights**, **GTmetrix**, **Pingdom**, and **YSlow** flag query strings on static resources as a performance issue. Removing them can:
+
+* ✅ Improve your website performance score
+* ✅ Enable better proxy and CDN caching
+* ✅ Reduce page load time for returning visitors
+* ✅ Contribute to better SEO rankings
+* ✅ Improve overall user experience
+
+= How It Works =
+
+Once activated, the plugin hooks into WordPress's built-in `script_loader_src` and `style_loader_src` filters and silently removes all query string parameters from your CSS and JS URLs — on the frontend only. The WordPress admin dashboard is never affected.
+
+No setup required. No settings page. Just install, activate, and you're done.
+
+= Features =
+
+* Removes all query string parameters from CSS and JS URLs (not just `?ver`)
+* Works automatically on activation — no configuration needed
+* Frontend-only — does not affect the WordPress admin area
+* Extremely lightweight — zero impact on page generation time
+* Compatible with all themes and plugins
+
+[Learn more about Query Strings on Wikipedia](https://en.wikipedia.org/wiki/Query_string)
 
 == Installation ==
 
-There are 3 different ways to install any WordPress plugin including WP Remove Query Strings From Static Resources.
+There are three ways to install this plugin:
 
-= Simplest: Using WordPress Dashboard =
+= Option 1: Install via WordPress Dashboard (Recommended) =
 
-1. Open Dashboard of your WordPress website and then add new plugin page here: Dashboard > Plugins > Add New.
-2. Now search for 'WP Remove Query Strings From Static Resources'.
-3. Click 'Install Now'
-4. Activate the plugin on the Plugin dashboard
+1. Go to **Dashboard > Plugins > Add New**.
+2. Search for **WP Remove Query Strings From Static Resources**.
+3. Click **Install Now**, then click **Activate**.
+4. That's it — the plugin works immediately, no configuration needed.
 
-= Uploading on Dashboard =
+= Option 2: Upload via WordPress Dashboard =
 
-1. Download plugin zip file from: https://wordpress.org/plugins/wp-remove-query-strings-from-static-resources/
-2. Now open Dashboard and then add new plugin page here: Dashboard > Plugins > Add New.
-3. Now click on 'Upload Plugin' button. 
-4. Click on 'Browse...' to select downloaded zip file. Now simply install and activate it.
+1. Download the plugin ZIP file from the [WordPress Plugin Repository](https://wordpress.org/plugins/wp-remove-query-strings-from-static-resources/).
+2. Go to **Dashboard > Plugins > Add New > Upload Plugin**.
+3. Choose the downloaded ZIP file and click **Install Now**.
+4. Activate the plugin from the Plugins page.
 
-= Uploading using FTP =
+= Option 3: Upload via FTP =
 
-1. Download plugin zip file from: https://wordpress.org/plugins/wp-remove-query-strings-from-static-resources/
-2. Extract this zip file to find folder 'wp-remove-query-strings-from-static-resources'
-3. Now upload 'wp-remove-query-strings-from-static-resources' folder inside plugins directory here: '--WP-ROOT--/wp-content/plugins/'
-4. Now open Dashboard and then plugins page. Find this plugin and activate it.
+1. Download and extract the plugin ZIP file.
+2. Upload the `wp-remove-query-strings-from-static-resources` folder to `/wp-content/plugins/` on your server.
+3. Go to **Dashboard > Plugins**, find the plugin, and click **Activate**.
 
 == Frequently Asked Questions ==
 
-= Where are plugin options? =
-This plugin does not have any option. It will stat working after plugin activation. And it will stop working after deactivation.
+= Does this plugin have a settings page? =
 
-= Will it works for my website? =
-Yes, it works for all WordPress websites.
+No. This plugin works automatically as soon as you activate it. There are no settings to configure.
+
+= Will it affect my WordPress admin dashboard? =
+
+No. The plugin only runs on the frontend of your website. The admin dashboard is completely unaffected.
+
+= Which query string parameters does it remove? =
+
+It removes all query string parameters from CSS and JS URLs — including `?ver=`, `?v=`, `?timestamp=`, and any other parameters. It is not limited to just `?ver=`.
+
+= Will this break my website? =
+
+No. Removing query strings from static resources is a safe and widely recommended performance optimization. Your CSS and JS files will still load correctly.
+
+= Does it work with caching plugins? =
+
+Yes. It is compatible with popular caching plugins like WP Super Cache, W3 Total Cache, WP Rocket, and LiteSpeed Cache.
+
+= Will it improve my PageSpeed or GTmetrix score? =
+
+Yes. Tools like Google PageSpeed Insights, GTmetrix, Pingdom, and YSlow flag query strings on static resources as a performance issue. Removing them helps improve your score.
 
 = I need support =
-Please create support topic <a href='https://wordpress.org/support/plugin/wp-remove-query-strings-from-static-resources'>Here</a>
+
+Please open a support topic on the [WordPress.org support forum](https://wordpress.org/support/plugin/wp-remove-query-strings-from-static-resources) and we will be happy to help.
 
 == Screenshots ==
 
 1. Code View
 
 == Changelog ==
+
+= 2.0 =
+* Improved: Removed unnecessary class property, filter callback now uses local variable
+* Improved: Strip all query string parameters (not just ?ver and &ver)
+* Improved: Plugin initialised via plugins_loaded hook for correct WP load order
+* Added: Requires PHP header (7.4)
+* Updated: Requires at least bumped to 5.0
+* Updated: Tested up to 7.0
+* Fixed: Typos and grammar in readme
+* Updated: Readme rewritten for better clarity and SEO
 
 = 1.8 =
 * Remove additional class
@@ -95,5 +159,5 @@ Please create support topic <a href='https://wordpress.org/support/plugin/wp-rem
 
 == Upgrade Notice ==
 
-Nothing special
-
+= 2.0 =
+Major update: improved query string stripping to cover all parameters (not just ?ver), correct plugin load order via plugins_loaded hook, and a fully rewritten readme. Upgrade recommended for all users.

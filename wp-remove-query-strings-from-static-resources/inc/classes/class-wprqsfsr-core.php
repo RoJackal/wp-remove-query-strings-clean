@@ -12,46 +12,27 @@ if ( ! class_exists( 'Wprqsfsr_Core' ) ) {
 	class Wprqsfsr_Core {
 
 		/**
-		 * Store link of assist.
-		 *
-		 * @var string | array
-		 */
-		public $link;
-
-
-		/**
 		 * Construct method of class.
 		 */
 		public function __construct() {
-			// Let do not apply in Dashboard.
+			// Do not apply in Dashboard.
 			if ( ! is_admin() ) {
-				add_filter( 'script_loader_src', array( $this, 'check_for_question' ), 15, 1 );
-				add_filter( 'style_loader_src', array( $this, 'check_for_question' ), 15, 1 );
-
-				add_filter( 'script_loader_src', array( $this, 'check_for_and' ), 15, 1 );
-				add_filter( 'style_loader_src', array( $this, 'check_for_and' ), 15, 1 );
+				add_filter( 'script_loader_src', array( $this, 'remove_query_string' ), 15, 1 );
+				add_filter( 'style_loader_src', array( $this, 'remove_query_string' ), 15, 1 );
 			}
-
 		}
 
 		/**
-		 * Pick only url from full link.
+		 * Remove all query string parameters from a resource URL.
 		 *
-		 * @param string $src full path of file.
-		 */
-		public function check_for_question( $src ) {
-			$this->link = explode( '?ver', $src );
-			return $this->link[0];
-		}
-
-		/**
-		 * Pick only url from full link.
+		 * Uses strtok() to strip everything from the first '?' onward,
+		 * handling ?ver=, ?timestamp=, ?v=, &ver= and any other params.
 		 *
-		 * @param string $src full path of file..
+		 * @param string $src Full URL of the resource file.
+		 * @return string Clean URL without any query string parameters.
 		 */
-		public function check_for_and( $src ) {
-			$this->link = explode( '&ver', $src );
-			return $this->link[0];
+		public function remove_query_string( $src ) {
+			return strtok( $src, '?' );
 		}
 
 	}

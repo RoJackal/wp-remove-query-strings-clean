@@ -1,43 +1,62 @@
 <?php
 /**
  * Plugin Name:	WP Remove Query Strings From Static Resources
- * Description:	It will remove query strings from static resources like CSS and JS files.
- * Version:		1.8
+ * Description:	Boost your WordPress site speed by removing query strings from CSS and JS files — improve your GTmetrix, PageSpeed, and Pingdom scores instantly.
  * Author:		Rinku Yadav
  * Author URI:	https://rinkuyadav.in
  * License:		GPLv2 or later
  * License URI:	http://www.gnu.org/licenses/gpl-2.0.html
+ * Version:		2.0
+ * Requires at least: 5.0
+ * Requires PHP:	7.4
  * Text Domain: wprqsfsr
- * Domain Path: /languages
- *
+ * 
  * @package     WP Remove Query Strings From Static Resources
  */
 
-// Exit if directly accessed files.
+// Exit if directly accessed.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Set path to constant.
+// Plugin directory path.
 if ( ! defined( 'WPRQSFSR_PATH' ) ) {
 	define( 'WPRQSFSR_PATH', wp_normalize_path( plugin_dir_path( __FILE__ ) ) );
 }
 
-// Set url to constant.
+// Plugin directory URL.
 if ( ! defined( 'WPRQSFSR_URL' ) ) {
 	define( 'WPRQSFSR_URL', plugin_dir_url( __FILE__ ) );
 }
 
-// Set __FILE__ to constant.
+// Plugin file path.
 if ( ! defined( 'WPRQSFSR_FILE' ) ) {
-    define( 'WPRQSFSR_FILE', __FILE__ );
+	define( 'WPRQSFSR_FILE', __FILE__ );
 }
 
-// Set plugin base file.
+// Plugin basename.
 if ( ! defined( 'WPRQSFSR_BASE_FILE' ) ) {
 	define( 'WPRQSFSR_BASE_FILE', plugin_basename( __FILE__ ) );
 }
 
-// Add core class.
-require WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-core.php';
-new Wprqsfsr_Core();
+// Load notice class at top level so register_deactivation_hook fires reliably.
+require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-notice.php';
+$wprqsfsr_notice = new Wprqsfsr_Notice();
+
+// Clear dismissed state on deactivation so notice reappears after re-activation.
+register_deactivation_hook( WPRQSFSR_FILE, array( $wprqsfsr_notice, 'reset_notice' ) );
+
+// Initialise frontend and remaining admin classes after all plugins have loaded.
+add_action( 'plugins_loaded', function() {
+
+	// Load core class — strips query strings on the frontend.
+	require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-core.php';
+	new Wprqsfsr_Core();
+
+	// Load plugin action links class (admin only).
+	if ( is_admin() ) {
+		require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-links.php';
+		new Wprqsfsr_Links();
+	}
+
+} );
