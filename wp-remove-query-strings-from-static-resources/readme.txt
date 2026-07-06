@@ -1,8 +1,8 @@
 === WP Remove Query Strings From Static Resources ===
 Contributors: rinkuyadav999
-Donate link: https://paypal.me/RinkuYadav
+Donate link: https://lbcache.com
 Tags: query strings, remove query strings, static resources, page speed, performance
-Stable tag: 2.0
+Stable tag: 2.2
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -55,6 +55,20 @@ No setup required. No settings page. Just install, activate, and you're done.
 
 [Learn more about Query Strings on Wikipedia](https://en.wikipedia.org/wiki/Query_string)
 
+= Upgrade to Pro =
+
+Get even faster load times and more advanced features with **Pro**! 
+
+* **Advanced Caching & Compression**: Browser Caching with Customizable Cache Durations, GZIP Compression, Cache-Control Headers, Keep-Alive, and ETag Removal.
+* **Code Minification**: Minify CSS, JS, and HTML, plus Delay JavaScript for a massive PageSpeed boost.
+* **Media & Font Optimization**: Lazy Load Images & iFrames, and Google Fonts Optimization.
+* **Database & Site Health**: Database Cleanup, DNS Prefetch, Preload Links, Heartbeat Control, and XML-RPC Disable.
+* **WooCommerce Ready**: Built-in WooCommerce Optimization.
+* **Settings Admin Page**: Easy-to-use interface to manage all features.
+* **Premium Support & Updates**: Get fast, dedicated assistance and regular new features.
+
+[Upgrade to Pro!](https://lbcache.com)
+
 == Installation ==
 
 There are three ways to install this plugin:
@@ -99,7 +113,7 @@ No. Removing query strings from static resources is a safe and widely recommende
 
 = Does it work with caching plugins? =
 
-Yes. It is compatible with popular caching plugins like WP Super Cache, W3 Total Cache, WP Rocket, and LiteSpeed Cache.
+Yes. It is compatible with all  caching plugins.
 
 = Will it improve my PageSpeed or GTmetrix score? =
 

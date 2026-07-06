@@ -37,11 +37,11 @@ if ( ! class_exists( 'Wprqsfsr_Notice' ) ) {
 		private $nonce_action = 'wprqsfsr_dismiss_nonce';
 
 		/**
-		 * Donate URL.
+		 * Upgrade to Pro URL.
 		 *
 		 * @var string
 		 */
-		private $donate_url = 'https://paypal.me/RinkuYadav';
+		private $upgrade_url = 'https://lbcache.com';
 
 		/**
 		 * Constructor — registers admin notice and AJAX dismiss handler.
@@ -52,11 +52,17 @@ if ( ! class_exists( 'Wprqsfsr_Notice' ) ) {
 		}
 
 		/**
-		 * Renders the dismissible donate notice.
-		 * Only shown to users who can manage options and have not dismissed it yet.
+		 * Renders the dismissible Upgrade to Pro notice.
+		 * Only shown to users who can manage options, have not dismissed it yet,
+		 * and do not already have the Pro plugin active.
 		 */
 		public function show_notice() {
 			if ( ! current_user_can( 'manage_options' ) ) {
+				return;
+			}
+
+			// Hide the notice if the Pro plugin is already active.
+			if ( defined( 'LBROWSERC_PRO_PATH' ) ) {
 				return;
 			}
 
@@ -66,15 +72,15 @@ if ( ! class_exists( 'Wprqsfsr_Notice' ) ) {
 
 			$nonce = wp_create_nonce( $this->nonce_action );
 			?>
-			<div class="notice notice-success is-dismissible" id="wprqsfsr-donate-notice">
+			<div class="notice notice-info is-dismissible" id="wprqsfsr-upgrade-notice">
 				<p>
-					<strong><?php esc_html_e( '⚡ WP Remove Query Strings is boosting your site speed!', 'wprqsfsr' ); ?></strong>
+					<strong><?php esc_html_e( '⭐ Unlock the full power of WP Remove Query Strings From Static Resources!', 'wprqsfsr' ); ?></strong>
 					<br>
 					<?php
 					printf(
-						/* translators: %s: donate link HTML */
+						/* translators: %s: upgrade link HTML */
 						wp_kses(
-							__( 'This plugin is completely <strong>free, ad-free, and open source</strong> — silently stripping query strings from your CSS and JS files to improve your PageSpeed, GTmetrix, and Pingdom scores every day. If it has helped speed up your site or improve your Google ranking, please consider a small donation to keep it maintained. Even $1 makes a real difference. %s', 'wprqsfsr' ),
+							__( 'You are using the free version. Upgrade to <strong>Pro</strong> to unlock Browser caching, GZIP compression, CSS/JS minification, lazy loading, HTML minification, and much more. %s', 'wprqsfsr' ),
 							array(
 								'strong' => array(),
 								'a'      => array(
@@ -85,14 +91,14 @@ if ( ! class_exists( 'Wprqsfsr_Notice' ) ) {
 								),
 							)
 						),
-						'<a href="' . esc_url( $this->donate_url ) . '" target="_blank" rel="noopener noreferrer" style="color:#e76500;font-weight:600;">&#9829; ' . esc_html__( 'Donate via PayPal — thank you!', 'wprqsfsr' ) . '</a>'
+						'<a href="' . esc_url( $this->upgrade_url ) . '" target="_blank" rel="noopener noreferrer" style="color:#00a32a;font-weight:600;text-decoration:none;">&#11088; ' . esc_html__( 'Upgrade to Pro', 'wprqsfsr' ) . '</a>'
 					);
 					?>
 				</p>
 			</div>
 			<script>
 			(function() {
-				var notice = document.getElementById( 'wprqsfsr-donate-notice' );
+				var notice = document.getElementById( 'wprqsfsr-upgrade-notice' );
 				if ( ! notice ) { return; }
 				notice.addEventListener( 'click', function( e ) {
 					if ( e.target.classList.contains( 'notice-dismiss' ) ) {

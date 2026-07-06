@@ -3,10 +3,10 @@
  * Plugin Name:	WP Remove Query Strings From Static Resources
  * Description:	Boost your WordPress site speed by removing query strings from CSS and JS files — improve your GTmetrix, PageSpeed, and Pingdom scores instantly.
  * Author:		Rinku Yadav
- * Author URI:	https://rinkuyadav.in
+ * Author URI:	https://lbcache.com
  * License:		GPLv2 or later
  * License URI:	http://www.gnu.org/licenses/gpl-2.0.html
- * Version:		2.0
+ * Version:		2.2
  * Requires at least: 5.0
  * Requires PHP:	7.4
  * Text Domain: wprqsfsr
@@ -53,10 +53,13 @@ add_action( 'plugins_loaded', function() {
 	require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-core.php';
 	new Wprqsfsr_Core();
 
-	// Load plugin action links class (admin only).
+	// Load plugin action links class and admin page (admin only).
 	if ( is_admin() ) {
 		require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-links.php';
 		new Wprqsfsr_Links();
+
+		require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-admin-page.php';
+		new Wprqsfsr_Admin_Page();
 	}
 
 } );

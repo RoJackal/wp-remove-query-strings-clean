@@ -12,11 +12,11 @@ if ( ! class_exists( 'Wprqsfsr_Links' ) ) {
 	class Wprqsfsr_Links {
 
 		/**
-		 * Donate URL.
+		 * Upgrade to Pro URL.
 		 *
 		 * @var string
 		 */
-		private $donate_url = 'https://paypal.me/RinkuYadav';
+		private $upgrade_url = 'https://lbcache.com';
 
 		/**
 		 * Constructor — hooks into the plugin action links filter.
@@ -29,19 +29,31 @@ if ( ! class_exists( 'Wprqsfsr_Links' ) ) {
 		}
 
 		/**
-		 * Appends a Donate link to the plugin's action links.
+		 * Appends an Upgrade to Pro link to the plugin's action links.
 		 *
 		 * @param array $links Existing action links.
 		 * @return array Modified action links.
 		 */
 		public function add_action_links( $links ) {
-			$donate_link = sprintf(
-				'<a href="%s" target="_blank" rel="noopener noreferrer" style="color:#e76500;">&#9829; %s</a>',
-				esc_url( $this->donate_url ),
-				esc_html__( 'Donate', 'wprqsfsr' )
+			// Hide all custom links if the Pro plugin is already active.
+			if ( defined( 'LBROWSERC_PRO_PATH' ) ) {
+				return $links;
+			}
+
+			$settings_link = sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( admin_url( 'admin.php?page=wprqsfsr' ) ),
+				esc_html__( 'Settings', 'wprqsfsr' )
 			);
 
-			$links[] = $donate_link;
+			$upgrade_link = sprintf(
+				'<a href="%s" target="_blank" rel="noopener noreferrer" style="color:#00a32a;font-weight:600;">&#11088; %s</a>',
+				esc_url( $this->upgrade_url ),
+				esc_html__( 'Upgrade to Pro', 'wprqsfsr' )
+			);
+
+			array_unshift( $links, $settings_link );
+			$links[] = $upgrade_link;
 
 			return $links;
 		}
