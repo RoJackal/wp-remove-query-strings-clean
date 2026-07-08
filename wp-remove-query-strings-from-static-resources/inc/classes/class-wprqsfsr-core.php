@@ -1,4 +1,9 @@
 <?php
+
+// Exit if directly accessed.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Main class of plugin.
  *
@@ -25,14 +30,17 @@ if ( ! class_exists( 'Wprqsfsr_Core' ) ) {
 		/**
 		 * Remove all query string parameters from a resource URL.
 		 *
-		 * Uses strtok() to strip everything from the first '?' onward,
+		 * Uses explode() to strip everything from the first '?' onward,
 		 * handling ?ver=, ?timestamp=, ?v=, &ver= and any other params.
 		 *
 		 * @param string $src Full URL of the resource file.
 		 * @return string Clean URL without any query string parameters.
 		 */
 		public function remove_query_string( $src ) {
-			return strtok( $src, '?' );
+			if ( strpos( $src, '?' ) !== false ) {
+				$src = explode( '?', $src )[0];
+			}
+			return $src;
 		}
 
 	}

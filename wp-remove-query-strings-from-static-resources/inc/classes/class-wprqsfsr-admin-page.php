@@ -1,4 +1,9 @@
 <?php
+
+// Exit if directly accessed.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Admin page class.
  *
@@ -40,8 +45,8 @@ if ( ! class_exists( 'Wprqsfsr_Admin_Page' ) ) {
 			}
 
 			add_menu_page(
-				__( 'Remove Query Strings', 'wprqsfsr' ),
-				__( 'Remove Query Strings', 'wprqsfsr' ),
+				__( 'Remove Query Strings', 'wp-remove-query-strings-from-static-resources' ),
+				__( 'Remove Query Strings', 'wp-remove-query-strings-from-static-resources' ),
 				'manage_options',
 				'wprqsfsr',
 				array( $this, 'render_page' ),
@@ -197,44 +202,44 @@ if ( ! class_exists( 'Wprqsfsr_Admin_Page' ) ) {
 
 			$server_software = isset( $_SERVER['SERVER_SOFTWARE'] )
 				? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) )
-				: __( 'Unknown', 'wprqsfsr' );
+				: __( 'Unknown', 'wp-remove-query-strings-from-static-resources' );
 			$is_apache = ( stripos( $server_software, 'apache' ) !== false );
 
 			// ── Pro feature list ─────────────────────────────────────────
 			$pro_features = array(
-				array( 'icon' => '⚡', 'label' => __( 'GZIP / Brotli Compression', 'wprqsfsr' ) ),
-				array( 'icon' => '🎨', 'label' => __( 'CSS Minification', 'wprqsfsr' ) ),
-				array( 'icon' => '📜', 'label' => __( 'JavaScript Minification', 'wprqsfsr' ) ),
-				array( 'icon' => '🖼️', 'label' => __( 'Image Lazy Loading', 'wprqsfsr' ) ),
-				array( 'icon' => '🗜️', 'label' => __( 'HTML Minification', 'wprqsfsr' ) ),
-				array( 'icon' => '🔗', 'label' => __( 'DNS Prefetch & Preconnect', 'wprqsfsr' ) ),
-				array( 'icon' => '📦', 'label' => __( 'Combine CSS & JS Files', 'wprqsfsr' ) ),
-				array( 'icon' => '🚀', 'label' => __( 'Critical CSS Inlining', 'wprqsfsr' ) ),
-				array( 'icon' => '🛡️', 'label' => __( 'Security Headers', 'wprqsfsr' ) ),
-				array( 'icon' => '📊', 'label' => __( 'Performance Dashboard', 'wprqsfsr' ) ),
-				array( 'icon' => '🔄', 'label' => __( 'One-click Cache Purge', 'wprqsfsr' ) ),
-				array( 'icon' => '🎯', 'label' => __( 'Priority Support', 'wprqsfsr' ) ),
+				array( 'icon' => '⚡', 'label' => __( 'GZIP / Brotli Compression', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🎨', 'label' => __( 'CSS Minification', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '📜', 'label' => __( 'JavaScript Minification', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🖼️', 'label' => __( 'Image Lazy Loading', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🗜️', 'label' => __( 'HTML Minification', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🔗', 'label' => __( 'DNS Prefetch & Preconnect', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '📦', 'label' => __( 'Combine CSS & JS Files', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🚀', 'label' => __( 'Critical CSS Inlining', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🛡️', 'label' => __( 'Security Headers', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '📊', 'label' => __( 'Performance Dashboard', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🔄', 'label' => __( 'One-click Cache Purge', 'wp-remove-query-strings-from-static-resources' ) ),
+				array( 'icon' => '🎯', 'label' => __( 'Priority Support', 'wp-remove-query-strings-from-static-resources' ) ),
 			);
 			?>
 			<div id="wprqsfsr-wrap">
 
 				<h1 class="wprqsfsr-title">
-					<?php esc_html_e( 'WP Remove Query Strings From Static Resources', 'wprqsfsr' ); ?>
-					<span class="wprqsfsr-badge"><?php esc_html_e( 'FREE', 'wprqsfsr' ); ?></span>
+					<?php esc_html_e( 'WP Remove Query Strings From Static Resources', 'wp-remove-query-strings-from-static-resources' ); ?>
+					<span class="wprqsfsr-badge"><?php esc_html_e( 'FREE', 'wp-remove-query-strings-from-static-resources' ); ?></span>
 				</h1>
-				<p class="wprqsfsr-subtitle"><?php esc_html_e( 'Boost your WordPress site speed by removing query strings from static resources.', 'wprqsfsr' ); ?></p>
+				<p class="wprqsfsr-subtitle"><?php esc_html_e( 'Boost your WordPress site speed by removing query strings from static resources.', 'wp-remove-query-strings-from-static-resources' ); ?></p>
 
 				<!-- ── Status ─────────────────────────────────────────── -->
 				<div class="wprqsfsr-card">
-					<h2><?php esc_html_e( '📋 Plugin Status', 'wprqsfsr' ); ?></h2>
+					<h2><?php esc_html_e( '📋 Plugin Status', 'wp-remove-query-strings-from-static-resources' ); ?></h2>
 					<div class="wprqsfsr-status-grid">
 
 						<div class="wprqsfsr-status-item">
 							<div class="wprqsfsr-icon"><?php echo $removal_active ? '✅' : '❌'; ?></div>
 							<div>
-								<div class="wprqsfsr-item-label"><?php esc_html_e( 'Query Strings Removal', 'wprqsfsr' ); ?></div>
+								<div class="wprqsfsr-item-label"><?php esc_html_e( 'Query Strings Removal', 'wp-remove-query-strings-from-static-resources' ); ?></div>
 								<div class="wprqsfsr-item-value <?php echo $removal_active ? 'wprqsfsr-ok' : 'wprqsfsr-warn'; ?>">
-									<?php echo $removal_active ? esc_html__( 'Active', 'wprqsfsr' ) : esc_html__( 'Inactive', 'wprqsfsr' ); ?>
+									<?php echo $removal_active ? esc_html__( 'Active', 'wp-remove-query-strings-from-static-resources' ) : esc_html__( 'Inactive', 'wp-remove-query-strings-from-static-resources' ); ?>
 								</div>
 							</div>
 						</div>
@@ -242,7 +247,7 @@ if ( ! class_exists( 'Wprqsfsr_Admin_Page' ) ) {
 						<div class="wprqsfsr-status-item">
 							<div class="wprqsfsr-icon"><?php echo $is_apache ? '✅' : '⚠️'; ?></div>
 							<div>
-								<div class="wprqsfsr-item-label"><?php esc_html_e( 'Web Server', 'wprqsfsr' ); ?></div>
+								<div class="wprqsfsr-item-label"><?php esc_html_e( 'Web Server', 'wp-remove-query-strings-from-static-resources' ); ?></div>
 								<div class="wprqsfsr-item-value <?php echo $is_apache ? 'wprqsfsr-ok' : 'wprqsfsr-warn'; ?>">
 									<?php echo esc_html( $server_software ); ?>
 								</div>
@@ -252,7 +257,7 @@ if ( ! class_exists( 'Wprqsfsr_Admin_Page' ) ) {
 						<div class="wprqsfsr-status-item">
 							<div class="wprqsfsr-icon">🔌</div>
 							<div>
-								<div class="wprqsfsr-item-label"><?php esc_html_e( 'Plugin Version', 'wprqsfsr' ); ?></div>
+								<div class="wprqsfsr-item-label"><?php esc_html_e( 'Plugin Version', 'wp-remove-query-strings-from-static-resources' ); ?></div>
 								<div class="wprqsfsr-item-value">
 									<?php
 									$plugin_data = get_plugin_data( WPRQSFSR_FILE );
@@ -265,7 +270,7 @@ if ( ! class_exists( 'Wprqsfsr_Admin_Page' ) ) {
 						<div class="wprqsfsr-status-item">
 							<div class="wprqsfsr-icon">🌐</div>
 							<div>
-								<div class="wprqsfsr-item-label"><?php esc_html_e( 'PHP Version', 'wprqsfsr' ); ?></div>
+								<div class="wprqsfsr-item-label"><?php esc_html_e( 'PHP Version', 'wp-remove-query-strings-from-static-resources' ); ?></div>
 								<div class="wprqsfsr-item-value"><?php echo esc_html( PHP_VERSION ); ?></div>
 							</div>
 						</div>
@@ -275,7 +280,7 @@ if ( ! class_exists( 'Wprqsfsr_Admin_Page' ) ) {
 
 				<!-- ── Pro Features ───────────────────────────────────── -->
 				<div class="wprqsfsr-card">
-					<h2><?php esc_html_e( '🔒 Pro Features — Not Available in Free', 'wprqsfsr' ); ?></h2>
+					<h2><?php esc_html_e( '🔒 Pro Features — Not Available in Free', 'wp-remove-query-strings-from-static-resources' ); ?></h2>
 					<div class="wprqsfsr-features-grid">
 						<?php foreach ( $pro_features as $feature ) : ?>
 							<div class="wprqsfsr-feature-item">
@@ -285,18 +290,18 @@ if ( ! class_exists( 'Wprqsfsr_Admin_Page' ) ) {
 						<?php endforeach; ?>
 					</div>
 
-                    <p style="text-align: center;font-size: 16px;padding-top: 14px;"><?php esc_html_e( 'Browser caching and much more', 'wprqsfsr' ); ?>... ❤️ !</p>
+                    <p style="text-align: center;font-size: 16px;padding-top: 14px;"><?php esc_html_e( 'Browser caching and much more', 'wp-remove-query-strings-from-static-resources' ); ?>... ❤️ !</p>
 
 				</div><!-- .wprqsfsr-card -->
 
 				<!-- ── Upgrade CTA ────────────────────────────────────── -->
 				<div class="wprqsfsr-cta">
 					<div>
-						<h2><?php esc_html_e( '⭐ Unlock the Full Power with PRO', 'wprqsfsr' ); ?></h2>
-						<p><?php esc_html_e( 'Get Browser caching, GZIP compression, CSS/JS minification, lazy loading, HTML minification, and much more — all in one plugin. Boost your PageSpeed score to 100.', 'wprqsfsr' ); ?></p>
+						<h2><?php esc_html_e( '⭐ Unlock the Full Power with PRO', 'wp-remove-query-strings-from-static-resources' ); ?></h2>
+						<p><?php esc_html_e( 'Get Browser caching, GZIP compression, CSS/JS minification, lazy loading, HTML minification, and much more — all in one plugin. Boost your PageSpeed score to 100.', 'wp-remove-query-strings-from-static-resources' ); ?></p>
 					</div>
 					<a href="<?php echo esc_url( $this->upgrade_url ); ?>" target="_blank" rel="noopener noreferrer" class="wprqsfsr-cta-btn">
-						<?php esc_html_e( '⭐ Upgrade to Pro', 'wprqsfsr' ); ?>
+						<?php esc_html_e( '⭐ Upgrade to Pro', 'wp-remove-query-strings-from-static-resources' ); ?>
 					</a>
 				</div>
 

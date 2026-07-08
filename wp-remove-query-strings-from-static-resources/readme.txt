@@ -2,7 +2,7 @@
 Contributors: rinkuyadav999
 Donate link: https://lbcache.com
 Tags: query strings, remove query strings, static resources, page speed, performance
-Stable tag: 2.2
+Stable tag: 2.3
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -129,6 +129,13 @@ Please open a support topic on the [WordPress.org support forum](https://wordpre
 
 == Changelog ==
 
+= 2.3 =
+* Plugin check issues fixed
+* Improved code
+
+= 2.2 =
+* Fixed: Replaced unsafe `strtok()` with `explode()` to prevent conflicts with other plugins and WordPress core loops.
+
 = 2.0 =
 * Improved: Removed unnecessary class property, filter callback now uses local variable
 * Improved: Strip all query string parameters (not just ?ver and &ver)
@@ -173,5 +180,5 @@ Please open a support topic on the [WordPress.org support forum](https://wordpre
 
 == Upgrade Notice ==
 
-= 2.0 =
+= 2.3 =
 Major update: improved query string stripping to cover all parameters (not just ?ver), correct plugin load order via plugins_loaded hook, and a fully rewritten readme. Upgrade recommended for all users.

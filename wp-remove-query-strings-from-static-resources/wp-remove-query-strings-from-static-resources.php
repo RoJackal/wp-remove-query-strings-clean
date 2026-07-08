@@ -6,10 +6,10 @@
  * Author URI:	https://lbcache.com
  * License:		GPLv2 or later
  * License URI:	http://www.gnu.org/licenses/gpl-2.0.html
- * Version:		2.2
+ * Version:		2.3
  * Requires at least: 5.0
  * Requires PHP:	7.4
- * Text Domain: wprqsfsr
+ * Text Domain: wp-remove-query-strings-from-static-resources
  * 
  * @package     WP Remove Query Strings From Static Resources
  */
