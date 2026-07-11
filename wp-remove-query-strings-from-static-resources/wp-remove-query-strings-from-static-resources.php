@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name:	WP Remove Query Strings From Static Resources
- * Description:	Boost your WordPress site speed by removing query strings from CSS and JS files — improve your GTmetrix, PageSpeed, and Pingdom scores instantly.
+ * Description:	Boost your WordPress site speed by safely removing query strings from local CSS and JS files. Features strict extension checking to protect dynamic scripts, and ignores external resources.
  * Author:		Rinku Yadav
  * Author URI:	https://lbcache.com
  * License:		GPLv2 or later
  * License URI:	http://www.gnu.org/licenses/gpl-2.0.html
- * Version:		2.3
+ * Version:		2.4
  * Requires at least: 5.0
  * Requires PHP:	7.4
  * Text Domain: wp-remove-query-strings-from-static-resources

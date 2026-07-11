@@ -2,7 +2,7 @@
 Contributors: rinkuyadav999
 Donate link: https://lbcache.com
 Tags: query strings, remove query strings, static resources, page speed, performance
-Stable tag: 2.3
+Stable tag: 2.4
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -13,7 +13,7 @@ Boost your WordPress site speed by removing query strings from CSS and JS files 
 
 == Description ==
 
-**WP Remove Query Strings From Static Resources** is a lightweight, zero-configuration WordPress plugin that automatically removes query strings (like `?ver=6.6`) from your CSS and JavaScript file URLs.
+**WP Remove Query Strings From Static Resources** is a lightweight, zero-configuration WordPress plugin that automatically removes query strings (like `?ver=6.6`) from your local CSS and JavaScript file URLs. It intelligently ignores external resources (such as third-party APIs like Google Maps) to prevent breaking their functionality, and features strict extension checking to protect dynamic scripts.
 
 By default, WordPress appends version parameters to static resource URLs — for example:
 
@@ -41,13 +41,15 @@ Speed is a critical ranking factor for search engines. Tools like **Google PageS
 
 = How It Works =
 
-Once activated, the plugin hooks into WordPress's built-in `script_loader_src` and `style_loader_src` filters and silently removes all query string parameters from your CSS and JS URLs — on the frontend only. The WordPress admin dashboard is never affected.
+Once activated, the plugin hooks into WordPress's built-in `script_loader_src` and `style_loader_src` filters and silently removes all query string parameters from your local CSS and JS URLs — on the frontend only. The WordPress admin dashboard is never affected.
 
 No setup required. No settings page. Just install, activate, and you're done.
 
 = Features =
 
-* Removes all query string parameters from CSS and JS URLs (not just `?ver`)
+* Removes all query string parameters from local CSS and JS URLs (not just `?ver`)
+* Safely ignores external resources to avoid breaking third-party scripts and APIs
+* Strictly targets files ending in `.css` and `.js` to protect dynamic PHP scripts enqueued as styles/scripts
 * Works automatically on activation — no configuration needed
 * Frontend-only — does not affect the WordPress admin area
 * Extremely lightweight — zero impact on page generation time
@@ -129,6 +131,11 @@ Please open a support topic on the [WordPress.org support forum](https://wordpre
 
 == Changelog ==
 
+= 2.4 =
+* Added: Strict file extension checking to ensure only `.css` and `.js` files are processed, protecting dynamic PHP scripts.
+* Added: Safely ignores external resources to prevent breaking third-party APIs like Google Maps.
+* Improved: Internal code structure and reliability.
+
 = 2.3 =
 * Plugin check issues fixed
 * Improved code
@@ -180,5 +187,5 @@ Please open a support topic on the [WordPress.org support forum](https://wordpre
 
 == Upgrade Notice ==
 
-= 2.3 =
-Major update: improved query string stripping to cover all parameters (not just ?ver), correct plugin load order via plugins_loaded hook, and a fully rewritten readme. Upgrade recommended for all users.
+= 2.4 =
+Major update: Safely ignores external resources and strictly targets .css and .js files. Upgrade recommended.

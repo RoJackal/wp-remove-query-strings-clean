@@ -28,17 +28,30 @@ if ( ! class_exists( 'Wprqsfsr_Core' ) ) {
 		}
 
 		/**
-		 * Remove all query string parameters from a resource URL.
+		 * Remove all query string parameters from local CSS and JS resource URLs.
 		 *
 		 * Uses explode() to strip everything from the first '?' onward,
 		 * handling ?ver=, ?timestamp=, ?v=, &ver= and any other params.
+		 * Strictly targets files with .css or .js extensions to protect dynamic scripts.
+		 * Ignores external resources to prevent breaking third-party APIs.
 		 *
 		 * @param string $src Full URL of the resource file.
-		 * @return string Clean URL without any query string parameters.
+		 * @return string Clean URL without any query string parameters, or original URL for external/non-static resources.
 		 */
 		public function remove_query_string( $src ) {
 			if ( strpos( $src, '?' ) !== false ) {
-				$src = explode( '?', $src )[0];
+				$path = (string) wp_parse_url( $src, PHP_URL_PATH );
+				$ext  = pathinfo( $path, PATHINFO_EXTENSION );
+
+				// Only process files that end in .css or .js
+				if ( in_array( strtolower( $ext ), array( 'css', 'js' ), true ) ) {
+					$src_host  = wp_parse_url( $src, PHP_URL_HOST );
+					$site_host = wp_parse_url( home_url(), PHP_URL_HOST );
+
+					if ( empty( $src_host ) || $src_host === $site_host ) {
+						$src = explode( '?', $src )[0];
+					}
+				}
 			}
 			return $src;
 		}
