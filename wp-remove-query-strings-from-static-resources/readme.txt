@@ -16,7 +16,7 @@ A non-commercial fork that removes query strings from local CSS and JavaScript r
 
 It removes query strings such as `?ver=6.6` from local CSS and JavaScript URLs on the public site. External resources and URLs that do not point to CSS or JavaScript files are left unchanged.
 
-This fork contains no advertising, donation links, upgrade notices, commercial feature promotions, tracking, or lbcache.com integrations.
+This fork contains no advertising, donation links, upgrade notices, commercial feature promotions, tracking, or third-party commercial integrations.
 
 The plugin preserves the original GPLv2-or-later licence and upstream attribution.
 
@@ -44,7 +44,7 @@ WordPress version query strings normally provide cache busting. After updating t
 = 2.4.1 =
 
 * Forked for private site maintenance.
-* Removed all lbcache.com links and commercial promotion.
+* Removed third-party commercial links and promotions.
 * Removed the upgrade notice, promotional admin page, and commercial plugin action links.
 * Added an Update URI header to prevent replacement by the WordPress.org version.
 * Preserved the core query-string removal behaviour and upstream GPL attribution.
