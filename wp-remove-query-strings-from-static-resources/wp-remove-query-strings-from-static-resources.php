@@ -1,65 +1,25 @@
 <?php
 /**
- * Plugin Name:	WP Remove Query Strings From Static Resources
- * Description:	Boost your WordPress site speed by safely removing query strings from local CSS and JS files. Features strict extension checking to protect dynamic scripts, and ignores external resources.
- * Author:		Rinku Yadav
- * Author URI:	https://lbcache.com
- * License:		GPLv2 or later
- * License URI:	http://www.gnu.org/licenses/gpl-2.0.html
- * Version:		2.4
+ * Plugin Name: WP Remove Query Strings Clean
+ * Plugin URI: https://github.com/RoJackal/wp-remove-query-strings-clean
+ * Description: Removes query strings from local CSS and JavaScript resources while leaving external and non-static resources unchanged.
+ * Version: 2.4.1
+ * Author: Rinku Yadav; maintained by RoJackal
+ * Update URI: https://github.com/RoJackal/wp-remove-query-strings-clean
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Requires at least: 5.0
- * Requires PHP:	7.4
+ * Requires PHP: 7.4
  * Text Domain: wp-remove-query-strings-from-static-resources
- * 
- * @package     WP Remove Query Strings From Static Resources
+ * @package WP_Remove_Query_Strings_Clean
  */
-
-// Exit if directly accessed.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (!defined('ABSPATH')) {
+    exit;
 }
-
-// Plugin directory path.
-if ( ! defined( 'WPRQSFSR_PATH' ) ) {
-	define( 'WPRQSFSR_PATH', wp_normalize_path( plugin_dir_path( __FILE__ ) ) );
+if (!defined('WPRQSFSR_PATH')) {
+    define('WPRQSFSR_PATH', wp_normalize_path(plugin_dir_path(__FILE__)));
 }
-
-// Plugin directory URL.
-if ( ! defined( 'WPRQSFSR_URL' ) ) {
-	define( 'WPRQSFSR_URL', plugin_dir_url( __FILE__ ) );
-}
-
-// Plugin file path.
-if ( ! defined( 'WPRQSFSR_FILE' ) ) {
-	define( 'WPRQSFSR_FILE', __FILE__ );
-}
-
-// Plugin basename.
-if ( ! defined( 'WPRQSFSR_BASE_FILE' ) ) {
-	define( 'WPRQSFSR_BASE_FILE', plugin_basename( __FILE__ ) );
-}
-
-// Load notice class at top level so register_deactivation_hook fires reliably.
-require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-notice.php';
-$wprqsfsr_notice = new Wprqsfsr_Notice();
-
-// Clear dismissed state on deactivation so notice reappears after re-activation.
-register_deactivation_hook( WPRQSFSR_FILE, array( $wprqsfsr_notice, 'reset_notice' ) );
-
-// Initialise frontend and remaining admin classes after all plugins have loaded.
-add_action( 'plugins_loaded', function() {
-
-	// Load core class — strips query strings on the frontend.
-	require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-core.php';
-	new Wprqsfsr_Core();
-
-	// Load plugin action links class and admin page (admin only).
-	if ( is_admin() ) {
-		require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-links.php';
-		new Wprqsfsr_Links();
-
-		require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-admin-page.php';
-		new Wprqsfsr_Admin_Page();
-	}
-
-} );
+add_action('plugins_loaded', static function (): void {
+    require_once WPRQSFSR_PATH . 'inc/classes/class-wprqsfsr-core.php';
+    new Wprqsfsr_Core();
+});
