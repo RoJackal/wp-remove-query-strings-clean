@@ -1,0 +1,26 @@
+name: PHP 8.5 tests
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  php-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up PHP 8.5
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          coverage: none
+          tools: none
+      - name: Display PHP version
+        run: php --version
+      - name: Lint PHP files
+        run: find . -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Run behavior and performance tests
+        run: php tests/run.php
