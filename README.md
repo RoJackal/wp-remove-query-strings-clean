@@ -2,7 +2,11 @@
 
 A non-commercial WordPress plugin fork maintained for [highproxies.com](https://highproxies.com) and [usrmagurele.ro](https://usrmagurele.ro).
 
-The plugin removes query strings from local CSS and JavaScript resource URLs while leaving external and non-static resources unchanged. It has no advertising, tracking, donation prompts, upgrade notices, commercial feature promotions, settings page, or third-party commercial integrations.
+Requires PHP 8.5 or newer. The plugin removes query strings from local CSS and JavaScript resource URLs while leaving external and non-static resources unchanged. It has no advertising, tracking, donation prompts, upgrade notices, commercial feature promotions, settings page, or third-party commercial integrations.
+
+## Validation
+
+GitHub Actions checks PHP 8.5 syntax, behavior, and comparative filtering performance on every pull request and push to `main`.
 
 ## Installation
 
