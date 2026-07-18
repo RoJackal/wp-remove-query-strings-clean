@@ -1,10 +1,10 @@
 === WP Remove Query Strings Clean ===
 Contributors: rinkuyadav999, rojackal
 Tags: query strings, static resources, CSS, JavaScript, caching
-Stable tag: 2.4.1
+Stable tag: 2.5.0
 Requires at least: 5.0
 Tested up to: 7.0
-Requires PHP: 7.4
+Requires PHP: 8.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,15 @@ The plugin preserves the original GPLv2-or-later licence and upstream attributio
 WordPress version query strings normally provide cache busting. After updating themes, plugins, CSS, or JavaScript, purge all relevant caches so visitors receive the current files.
 
 == Changelog ==
+
+= 2.5.0 =
+
+* Requires PHP 8.5 or newer.
+* Replaced repeated URL-path parsing and `pathinfo()` calls with short extension comparisons.
+* Cached the site hostname instead of parsing `home_url()` for every resource.
+* Added case-insensitive hostname comparison.
+* Simplified the plugin bootstrap.
+* Added behavioral, syntax, and comparative performance tests for PHP 8.5.
 
 = 2.4.1 =
 
