@@ -70,7 +70,18 @@ final class LegacyFilter
     }
 }
 $legacy = new LegacyFilter();
-$sources = array_column($tests, 0);
+$sources = [
+    'https://example.com/app.css?ver=1',
+    'https://example.com/app.CSS?ver=1',
+    'https://example.com/app.js?v=2',
+    '//example.com/app.js?ver=1',
+    '/wp-content/app.css?ver=1',
+    'wp-content/app.js?ver=1',
+    'https://cdn.example.net/app.css?ver=1',
+    'https://example.com/app.php?ver=1',
+    'https://example.com/app.css',
+    'https://example.com/app.css?ver=1#fragment',
+];
 $iterations = 100000;
 $benchmark = static function (callable $callback) use ($sources, $iterations): array {
     $checksum = 0;
