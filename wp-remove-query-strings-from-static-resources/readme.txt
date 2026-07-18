@@ -1,191 +1,60 @@
-=== WP Remove Query Strings From Static Resources ===
-Contributors: rinkuyadav999
-Donate link: https://lbcache.com
-Tags: query strings, remove query strings, static resources, page speed, performance
-Stable tag: 2.4
+=== WP Remove Query Strings Clean ===
+Contributors: rinkuyadav999, rojackal
+Tags: query strings, static resources, CSS, JavaScript, caching
+Stable tag: 2.4.1
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Boost your WordPress site speed by removing query strings from CSS and JS files — improve your GTmetrix, PageSpeed, and Pingdom scores instantly.
+A non-commercial fork that removes query strings from local CSS and JavaScript resources.
 
 == Description ==
 
-**WP Remove Query Strings From Static Resources** is a lightweight, zero-configuration WordPress plugin that automatically removes query strings (like `?ver=6.6`) from your local CSS and JavaScript file URLs. It intelligently ignores external resources (such as third-party APIs like Google Maps) to prevent breaking their functionality, and features strict extension checking to protect dynamic scripts.
+**WP Remove Query Strings Clean** is a lightweight, zero-configuration WordPress plugin maintained for highproxies.com and usrmagurele.ro.
 
-By default, WordPress appends version parameters to static resource URLs — for example:
+It removes query strings such as `?ver=6.6` from local CSS and JavaScript URLs on the public site. External resources and URLs that do not point to CSS or JavaScript files are left unchanged.
 
-`https://example.com/style.css?ver=6.6`
+This fork contains no advertising, donation links, upgrade notices, commercial feature promotions, tracking, or lbcache.com integrations.
 
-While this helps with cache-busting during development, it prevents proxy servers and CDN networks from properly caching these files, which hurts your website's performance score.
+The plugin preserves the original GPLv2-or-later licence and upstream attribution.
 
-This plugin strips those query strings, turning URLs like:
+== Features ==
 
-`https://example.com/style.css?ver=6.6`
-
-into clean, cacheable URLs like:
-
-`https://example.com/style.css`
-
-= Why Does This Matter? =
-
-Speed is a critical ranking factor for search engines. Tools like **Google PageSpeed Insights**, **GTmetrix**, **Pingdom**, and **YSlow** flag query strings on static resources as a performance issue. Removing them can:
-
-* ✅ Improve your website performance score
-* ✅ Enable better proxy and CDN caching
-* ✅ Reduce page load time for returning visitors
-* ✅ Contribute to better SEO rankings
-* ✅ Improve overall user experience
-
-= How It Works =
-
-Once activated, the plugin hooks into WordPress's built-in `script_loader_src` and `style_loader_src` filters and silently removes all query string parameters from your local CSS and JS URLs — on the frontend only. The WordPress admin dashboard is never affected.
-
-No setup required. No settings page. Just install, activate, and you're done.
-
-= Features =
-
-* Removes all query string parameters from local CSS and JS URLs (not just `?ver`)
-* Safely ignores external resources to avoid breaking third-party scripts and APIs
-* Strictly targets files ending in `.css` and `.js` to protect dynamic PHP scripts enqueued as styles/scripts
-* Works automatically on activation — no configuration needed
-* Frontend-only — does not affect the WordPress admin area
-* Extremely lightweight — zero impact on page generation time
-* Compatible with all themes and plugins
-
-[Learn more about Query Strings on Wikipedia](https://en.wikipedia.org/wiki/Query_string)
-
-= Upgrade to Pro =
-
-Get even faster load times and more advanced features with **Pro**! 
-
-* **Advanced Caching & Compression**: Browser Caching with Customizable Cache Durations, GZIP Compression, Cache-Control Headers, Keep-Alive, and ETag Removal.
-* **Code Minification**: Minify CSS, JS, and HTML, plus Delay JavaScript for a massive PageSpeed boost.
-* **Media & Font Optimization**: Lazy Load Images & iFrames, and Google Fonts Optimization.
-* **Database & Site Health**: Database Cleanup, DNS Prefetch, Preload Links, Heartbeat Control, and XML-RPC Disable.
-* **WooCommerce Ready**: Built-in WooCommerce Optimization.
-* **Settings Admin Page**: Easy-to-use interface to manage all features.
-* **Premium Support & Updates**: Get fast, dedicated assistance and regular new features.
-
-[Upgrade to Pro!](https://lbcache.com)
+* Removes query strings from local CSS and JavaScript resource URLs.
+* Ignores external resources.
+* Ignores non-CSS and non-JavaScript URLs.
+* Runs only on the public-facing site.
+* Requires no settings or administration page.
+* Contains no commercial integrations or promotional notices.
 
 == Installation ==
 
-There are three ways to install this plugin:
+1. Copy the `wp-remove-query-strings-from-static-resources` directory to `/wp-content/plugins/`.
+2. Activate **WP Remove Query Strings Clean** from the WordPress Plugins page.
+3. Purge the WordPress, server, and CDN caches.
 
-= Option 1: Install via WordPress Dashboard (Recommended) =
+== Important Cache Note ==
 
-1. Go to **Dashboard > Plugins > Add New**.
-2. Search for **WP Remove Query Strings From Static Resources**.
-3. Click **Install Now**, then click **Activate**.
-4. That's it — the plugin works immediately, no configuration needed.
-
-= Option 2: Upload via WordPress Dashboard =
-
-1. Download the plugin ZIP file from the [WordPress Plugin Repository](https://wordpress.org/plugins/wp-remove-query-strings-from-static-resources/).
-2. Go to **Dashboard > Plugins > Add New > Upload Plugin**.
-3. Choose the downloaded ZIP file and click **Install Now**.
-4. Activate the plugin from the Plugins page.
-
-= Option 3: Upload via FTP =
-
-1. Download and extract the plugin ZIP file.
-2. Upload the `wp-remove-query-strings-from-static-resources` folder to `/wp-content/plugins/` on your server.
-3. Go to **Dashboard > Plugins**, find the plugin, and click **Activate**.
-
-== Frequently Asked Questions ==
-
-= Does this plugin have a settings page? =
-
-No. This plugin works automatically as soon as you activate it. There are no settings to configure.
-
-= Will it affect my WordPress admin dashboard? =
-
-No. The plugin only runs on the frontend of your website. The admin dashboard is completely unaffected.
-
-= Which query string parameters does it remove? =
-
-It removes all query string parameters from CSS and JS URLs — including `?ver=`, `?v=`, `?timestamp=`, and any other parameters. It is not limited to just `?ver=`.
-
-= Will this break my website? =
-
-No. Removing query strings from static resources is a safe and widely recommended performance optimization. Your CSS and JS files will still load correctly.
-
-= Does it work with caching plugins? =
-
-Yes. It is compatible with all  caching plugins.
-
-= Will it improve my PageSpeed or GTmetrix score? =
-
-Yes. Tools like Google PageSpeed Insights, GTmetrix, Pingdom, and YSlow flag query strings on static resources as a performance issue. Removing them helps improve your score.
-
-= I need support =
-
-Please open a support topic on the [WordPress.org support forum](https://wordpress.org/support/plugin/wp-remove-query-strings-from-static-resources) and we will be happy to help.
-
-== Screenshots ==
-
-1. Code View
+WordPress version query strings normally provide cache busting. After updating themes, plugins, CSS, or JavaScript, purge all relevant caches so visitors receive the current files.
 
 == Changelog ==
 
-= 2.4 =
-* Added: Strict file extension checking to ensure only `.css` and `.js` files are processed, protecting dynamic PHP scripts.
-* Added: Safely ignores external resources to prevent breaking third-party APIs like Google Maps.
-* Improved: Internal code structure and reliability.
+= 2.4.1 =
 
-= 2.3 =
-* Plugin check issues fixed
-* Improved code
-
-= 2.2 =
-* Fixed: Replaced unsafe `strtok()` with `explode()` to prevent conflicts with other plugins and WordPress core loops.
-
-= 2.0 =
-* Improved: Removed unnecessary class property, filter callback now uses local variable
-* Improved: Strip all query string parameters (not just ?ver and &ver)
-* Improved: Plugin initialised via plugins_loaded hook for correct WP load order
-* Added: Requires PHP header (7.4)
-* Updated: Requires at least bumped to 5.0
-* Updated: Tested up to 7.0
-* Fixed: Typos and grammar in readme
-* Updated: Readme rewritten for better clarity and SEO
-
-= 1.8 =
-* Remove additional class
-
-= 1.7 =
-* Added additional class
-
-= 1.6 =
-* Tested for WP 6.6
-
-= 1.5 =
-* Tested for WP 6.3
-
-= 1.4 =
-* Compatibility WP 6.0
-
-= 1.3 =
-* 23 Feb, 2019
-* Text improved
-* Increase Version
-
-= 1.2 =
-* 3 July, 2017
-* Code improved
-
-= 1.1 =
-* 3 July, 2017
-* Compatibility issue
-
-= 1.0 =
-* 29 June, 2017
-* First Release
-
-== Upgrade Notice ==
+* Forked for private site maintenance.
+* Removed all lbcache.com links and commercial promotion.
+* Removed the upgrade notice, promotional admin page, and commercial plugin action links.
+* Added an Update URI header to prevent replacement by the WordPress.org version.
+* Preserved the core query-string removal behaviour and upstream GPL attribution.
 
 = 2.4 =
-Major update: Safely ignores external resources and strictly targets .css and .js files. Upgrade recommended.
+
+* Added strict CSS and JavaScript extension checking.
+* Added protection for external resources.
+* Improved internal reliability.
+
+== Upstream ==
+
+Based on **WP Remove Query Strings From Static Resources** by Rinku Yadav, licensed under GPLv2 or later.
